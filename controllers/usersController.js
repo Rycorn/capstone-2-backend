@@ -24,16 +24,16 @@ const createNewUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    if (!req?.body?.id) {
-        return res.status(400).json({ 'message': 'ID parameter is required.' });
+    if (!req?.body?.user) {
+        return res.status(400).json({ 'message': 'user parameter is required.' });
     }
 
-    const User = await User.findOne({ _id: req.body.id }).exec();
+    const User = await User.findOne({ user: req.body.user }).exec();
     if (!User) {
-        return res.status(204).json({ "message": `No User matches ID ${req.body.id}.` });
+        return res.status(204).json({ "message": `No User matches ${req.body.user}.` });
     }
     if (req.body?.wins) User.wins = req.body.wins;
-    if (req.body?.losses) User.lastname = req.body.losses;
+    if (req.body?.losses) User.losses = req.body.losses;
     const result = await User.save();
     res.json(result);
 }
