@@ -68,9 +68,10 @@ const handleRefreshToken = async (req, res) => {
 
             const wins = foundUser.wins;
             const losses = foundUser.losses;
+             const user = foundUser.username;
             // Send authorization roles and access token to user
             res.json({ roles, accessToken, user, wins, losses });
-            res.json({ roles, accessToken })
+            //res.json({ roles, accessToken })
         }
     );
 }
