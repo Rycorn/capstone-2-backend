@@ -29,14 +29,14 @@ const updateUser = async (req, res) => {
         return res.status(400).json({ 'message': 'user parameter is required.' });
     }
 
-    const User = await User.findOne({ user: req.body.user }).exec();
-    console.log(User);
-    if (!User) {
+    const user = await User.findOne({ user: req.body.user }).exec();
+    console.log(user);
+    if (!user) {
         return res.status(204).json({ "message": `No User matches ${req.body.user}.` });
     }
-    if (req.body?.wins) User.wins = req.body.wins;
-    if (req.body?.losses) User.losses = req.body.losses;
-    const result = await User.save();
+    if (req.body?.wins) user.wins = req.body.wins;
+    if (req.body?.losses) user.losses = req.body.losses;
+    const result = await user.save();
     console.log(result);
     res.json(result);
 }
