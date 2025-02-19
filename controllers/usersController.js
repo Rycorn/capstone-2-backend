@@ -31,13 +31,14 @@ const updateUser = async (req, res) => {
 
     const user = await User.findOne({ user: req.body.user }).exec();
     console.log(user);
+    console.log('user ', user);
     if (!user) {
         return res.status(204).json({ "message": `No User matches ${req.body.user}.` });
     }
     if (req.body?.wins) user.wins = req.body.wins;
     if (req.body?.losses) user.losses = req.body.losses;
     const result = await user.save();
-    console.log(result);
+    console.log('result ', result);
     res.json(result);
 }
 
