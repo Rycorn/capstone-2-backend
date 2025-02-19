@@ -6,11 +6,11 @@ const verifyRoles = require('../../middleware/verifyRoles');
 
 /*.get(verifyRoles(ROLES_LIST.Admin), usersController.getAllUsers)
     .delete(verifyRoles(ROLES_LIST.Admin), usersController.deleteUser); */
-
+//.put(verifyRoles(ROLES_LIST.User), usersController.updateUser)
 router.route('/')
     .get(verifyRoles(ROLES_LIST.User), usersController.getAllUsers)
     .post(verifyRoles(ROLES_LIST.User), usersController.createNewUser)
-    .put(verifyRoles(ROLES_LIST.User), usersController.updateUser)
+    .put(usersController.updateUser)
     .delete(verifyRoles(ROLES_LIST.User), usersController.deleteUser);
 
 router.route('/:id')
